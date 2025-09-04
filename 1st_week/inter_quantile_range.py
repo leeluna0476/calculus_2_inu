@@ -2,6 +2,7 @@ import math
 
 # 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
+# RETURN VALUES:
 # The quantile is returned.
 def quantile(data: list, q: float):
     data_len = len(data)
@@ -19,6 +20,7 @@ def quantile(data: list, q: float):
 
 # 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
+# RETURN VALUES:
 # If 'val' is less than the first element of 'data', None is returned
 # Else, the upper extreme and its index are returned.
 def upper_extreme(data: list, val: float):
@@ -37,6 +39,7 @@ def upper_extreme(data: list, val: float):
     return data[left - 1], left - 1
 
 
+# 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
 # RETURN VALUES:
 # If 'val' is greater than the last element of 'data', None is returned.
@@ -58,6 +61,7 @@ def lower_extreme(data: list, val: float):
     return data[left], left
 
 
+# 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
 # RETURN VALUE:
 # A list of outliers is returned.
@@ -90,11 +94,6 @@ lower_extreme, low_idx = lower_extreme(sorted_data, q1 - 1.5 * iqr)
 print(f'upper_extreme: {upper_extreme}')
 print(f'lower_extreme: {lower_extreme}')
 
-outliers = []
-for i in range(0, low_idx):
-    ourliers.append(sorted_data[i])
-
-for i in range(up_idx + 1, len(sorted_data)):
-    outliers.append(sorted_data[i])
+outliers = outliers(sorted_data, up_idx, low_idx)
 
 print(f'outliers: {outliers}')
