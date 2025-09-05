@@ -66,12 +66,12 @@ def lower_extreme(data: list, val: float):
 # RETURN VALUE:
 # A list of outliers is returned.
 def outliers(data: list, up_idx: int, low_idx: int):
-    outliers = []
+    o = []
     for i in range(0, low_idx):
-        outliers.append(data[i])
+        o.append(data[i])
     for i in range(up_idx + 1, len(data)):
-        outliers.append(data[i])
-    return outliers
+        o.append(data[i])
+    return o
 
 
 import matplotlib.pyplot as plt
@@ -79,8 +79,7 @@ import matplotlib.pyplot as plt
 def boxplot(data: list, q1: float, q2: float, q3: float, upper_extreme: float, lower_extreme: float, outliers: list):
     fig, ax = plt.subplots(figsize=(6, 6))
 
-    ax.add_patch(plt.Rectangle((0.9, q1), 0.2, q3 - q1,
-                               fill=False, edgecolor='black'))
+    ax.add_patch(plt.Rectangle((0.9, q1), 0.2, q3 - q1, fill=False, edgecolor='black'))
 
     ax.hlines(q2, 0.9, 1.1, colors='black')
 
@@ -96,7 +95,7 @@ def boxplot(data: list, q1: float, q2: float, q3: float, upper_extreme: float, l
     plt.show()
 
 
-# given data
+########### the given data ###########
 data = [140, 145, 160, 190, 155, 165, 150, 190, 195, 138, 160, 155, 153, 145, 170, 175, 175, 170, 180, 135, 170, 157, 130, 185, 190, 155, 170, 155, 215, 150, 145, 155, 155, 150, 155, 150, 180, 160, 135, 160, 130, 155, 150, 148, 155, 150, 140, 180, 190, 145, 150, 164, 140, 142, 136, 123, 155, 140, 120, 130, 138, 121, 125, 116, 145, 150, 112, 125, 130, 120, 130, 131, 120, 118, 125, 135, 125, 118, 122, 115, 102, 115, 150, 110, 116, 108, 95, 125, 133, 110, 150, 108]
 
 sorted_data = sorted(data)
@@ -112,18 +111,18 @@ print(f'q3: {q3}')
 iqr = q3 - q1
 print(f'iqr: {iqr}')
 
-upper_extreme, up_idx = upper_extreme(sorted_data, q3 + 1.5 * iqr)
-lower_extreme, low_idx = lower_extreme(sorted_data, q1 - 1.5 * iqr)
-print(f'upper_extreme: {upper_extreme}')
-print(f'lower_extreme: {lower_extreme}')
+up_extreme, up_idx = upper_extreme(sorted_data, q3 + 1.5 * iqr)
+low_extreme, low_idx = lower_extreme(sorted_data, q1 - 1.5 * iqr)
+print(f'upper_extreme: {up_extreme}')
+print(f'lower_extreme: {low_extreme}')
 
-outliers = outliers(sorted_data, up_idx, low_idx)
+o = outliers(sorted_data, up_idx, low_idx)
 
-print(f'outliers: {outliers}')
+print(f'outliers: {o}')
 
-boxplot(data, q1, q2, q3, upper_extreme, lower_extreme, outliers)
+boxplot(data, q1, q2, q3, up_extreme, low_extreme, o)
 
-# [100, 10000] 구간의 2000개의 균일분포 랜덤 데이터.
+########### [100, 10000] 구간의 2000개의 균일분포 랜덤 데이터. ###########
 import random
 
 data = random.choices(range(100, 10001), k=2000)
@@ -141,13 +140,13 @@ print(f'q3: {q3}')
 iqr = q3 - q1
 print(f'iqr: {iqr}')
 
-upper_extreme, up_idx = upper_extreme(sorted_data, q3 + 1.5 * iqr)
-lower_extreme, low_idx = lower_extreme(sorted_data, q1 - 1.5 * iqr)
-print(f'upper_extreme: {upper_extreme}')
-print(f'lower_extreme: {lower_extreme}')
+up_extreme, up_idx = upper_extreme(sorted_data, q3 + 1.5 * iqr)
+low_extreme, low_idx = lower_extreme(sorted_data, q1 - 1.5 * iqr)
+print(f'upper_extreme: {up_extreme}')
+print(f'lower_extreme: {low_extreme}')
 
-outliers = outliers(sorted_data, up_idx, low_idx)
+o = outliers(sorted_data, up_idx, low_idx)
 
-print(f'outliers: {outliers}')
+print(f'outliers: {o}')
 
-boxplot(data, q1, q2, q3, upper_extreme, lower_extreme, outliers)
+boxplot(data, q1, q2, q3, up_extreme, low_extreme, o)
