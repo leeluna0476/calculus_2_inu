@@ -1,5 +1,3 @@
-import math
-
 # 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
 # RETURN VALUES:
@@ -9,9 +7,9 @@ def quantile(data: list, q: float):
 
     idx = (data_len - 1)*q
     if isinstance(idx, int):
-        q_value = data[l_idx]
+        q_value = data[idx]
     else:
-        l_idx = math.floor(idx)
+        l_idx = int(idx // 1)
         u_idx = l_idx + 1
         q_value = (data[l_idx] + data[u_idx]) / 2
 
