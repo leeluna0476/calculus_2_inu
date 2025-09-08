@@ -1,6 +1,6 @@
 # 'data' must be sorted.
 # If 'data' is not sorted, the behaviour is undefined.
-# RETURN VALUES:
+# RETURN VALUE:
 # The quantile is returned.
 def quantile(data: list, q: float):
     data_len = len(data)
@@ -64,5 +64,5 @@ def lower_extreme(data: list, val: float):
 # RETURN VALUE:
 # A list of outliers is returned.
 def outliers(data: list, up_idx: int, low_idx: int):
-    outliers = data[0:low_idx] + data[up_idx + 1:len(data)]
-    return outliers
+    o = data[0:low_idx] + data[up_idx + 1:len(data)]
+    return o
