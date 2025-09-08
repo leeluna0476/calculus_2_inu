@@ -64,11 +64,7 @@ def lower_extreme(data: list, val: float):
 # RETURN VALUE:
 # A list of outliers is returned.
 def outliers(data: list, up_idx: int, low_idx: int):
-    o = []
-    for i in range(0, low_idx):
-        o.append(data[i])
-    for i in range(up_idx + 1, len(data)):
-        o.append(data[i])
+    o = data[0:low_idx] + data[up_idx + 1:len(data)]
     return o
 
 
