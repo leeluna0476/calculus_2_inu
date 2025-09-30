@@ -7,21 +7,23 @@ def std_normalized_gaussian_pdf(z: float):
 
 def std_normalized_gaussian_cdf(z: float):
     ret = 0
-    du_inv = 100000
-    i = -349000
-    z_amp = int(z * 100000)
-    while i < z_amp:
-        ret += std_normalized_gaussian_pdf(i / du_inv) / du_inv
-        i += 1
+    du = 0.00001
+    i = -10.0
+    while i < z:
+        ret += std_normalized_gaussian_pdf(i) * du
+        i += du
     return ret
 
 print('\t|0.00\t|0.01\t|0.02\t|0.03\t|0.04\t|0.05\t|0.06\t|0.07\t|0.08\t|0.09\t|')
 i = 0
+result = 0
 while i < 35:
     print(f'|{i*0.1:.1f}\t|', end='')
     j = 0
     while j < 10:
-        print(f'{std_normalized_gaussian_cdf(i*0.1 + j*0.01):.4f}\t|', end='')
+        z = i / 10 + j / 100
+        result = std_normalized_gaussian_cdf(z)
+        print(f'{result:.4f}\t|', end='')
         j += 1
     print()
     i += 1
