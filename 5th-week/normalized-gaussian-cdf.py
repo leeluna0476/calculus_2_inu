@@ -15,10 +15,9 @@ def std_normalized_gaussian_cdf(z: float):
     return ret
 
 print('\t|0.00\t|0.01\t|0.02\t|0.03\t|0.04\t|0.05\t|0.06\t|0.07\t|0.08\t|0.09\t|')
-i = 0
-result = 0
+i = -35
 while i < 35:
-    print(f'|{i*0.1:.1f}\t|', end='')
+    print(f'|{i/10:.2f}\t|', end='')
     j = 0
     while j < 10:
         z = i / 10 + j / 100
